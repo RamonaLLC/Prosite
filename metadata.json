@@ -1,0 +1,6 @@
+{
+  "name": "ProSite",
+  "description": "A collaborative platform for construction companies, workers, and clients to track progress, annotate photos, manage expenses, and log hours.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

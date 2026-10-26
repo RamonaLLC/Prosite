@@ -1,0 +1,161 @@
+{
+  "entities": {
+    "Job": {
+      "title": "Job",
+      "description": "Construction project and site specification with tasks, photos, and estimate logs",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 200 },
+        "clientName": { "type": "string", "maxLength": 100 },
+        "clientEmail": { "type": "string", "maxLength": 100 },
+        "clientPhone": { "type": "string", "maxLength": 50 },
+        "address": { "type": "string", "maxLength": 300 },
+        "description": { "type": "string", "maxLength": 2000 },
+        "startDate": { "type": "string", "maxLength": 50 },
+        "endDate": { "type": "string", "maxLength": 50 },
+        "status": { "type": "string", "enum": ["planning", "in-progress", "completed"] },
+        "jobValue": { "type": "number" },
+        "assignedWorkers": { "type": "array" },
+        "companyId": { "type": "string", "maxLength": 128 },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "title", "status"]
+    },
+    "Worker": {
+      "title": "Worker",
+      "description": "Worker profile with GPS and job site status",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 100 },
+        "email": { "type": "string", "maxLength": 100 },
+        "position": { "type": "string", "maxLength": 100 },
+        "role": { "type": "string", "enum": ["manager", "employee"] },
+        "isAtJob": { "type": "boolean" },
+        "currentJobId": { "type": "string", "maxLength": 128 },
+        "lat": { "type": "number" },
+        "lng": { "type": "number" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "name"]
+    },
+    "Message": {
+      "title": "Message",
+      "description": "Direct communication message between project stakeholders",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "senderId": { "type": "string", "maxLength": 128 },
+        "senderName": { "type": "string", "maxLength": 100 },
+        "senderRole": { "type": "string", "maxLength": 50 },
+        "recipientId": { "type": "string", "maxLength": 128 },
+        "recipientName": { "type": "string", "maxLength": 100 },
+        "jobId": { "type": "string", "maxLength": 128 },
+        "text": { "type": "string", "maxLength": 2000 },
+        "timestamp": { "type": "string", "maxLength": 100 },
+        "read": { "type": "boolean" }
+      },
+      "required": ["id", "senderId", "text", "timestamp"]
+    },
+    "TimeLog": {
+      "title": "TimeLog",
+      "description": "Geofence time tracking log for job site hours",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "workerId": { "type": "string", "maxLength": 128 },
+        "workerName": { "type": "string", "maxLength": 100 },
+        "jobId": { "type": "string", "maxLength": 128 },
+        "jobTitle": { "type": "string", "maxLength": 200 },
+        "jobAddress": { "type": "string", "maxLength": 300 },
+        "date": { "type": "string", "maxLength": 50 },
+        "arrivalTime": { "type": "string", "maxLength": 50 },
+        "departureTime": { "type": "string", "maxLength": 50 },
+        "hours": { "type": "number" }
+      },
+      "required": ["id", "workerId", "jobId", "date"]
+    },
+    "CompanySettings": {
+      "title": "CompanySettings",
+      "description": "Company profile, license information, and preferences",
+      "type": "object",
+      "properties": {
+        "companyName": { "type": "string", "maxLength": 150 },
+        "phone": { "type": "string", "maxLength": 50 },
+        "email": { "type": "string", "maxLength": 100 },
+        "address": { "type": "string", "maxLength": 300 },
+        "licenseNumber": { "type": "string", "maxLength": 100 },
+        "insurancePolicy": { "type": "string", "maxLength": 100 },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["companyName", "email"]
+    },
+    "TransactionRecord": {
+      "title": "TransactionRecord",
+      "description": "Financial ledger transactions including subscription fees, job posting fees, and job milestone payouts",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "type": { "type": "string", "enum": ["subscription_fee", "job_posting_fee", "job_payment", "inspection_fee", "dispute_hold"] },
+        "amount": { "type": "number" },
+        "currency": { "type": "string", "maxLength": 10 },
+        "payerId": { "type": "string", "maxLength": 128 },
+        "payerName": { "type": "string", "maxLength": 100 },
+        "payerRole": { "type": "string", "maxLength": 50 },
+        "recipientId": { "type": "string", "maxLength": 128 },
+        "recipientName": { "type": "string", "maxLength": 100 },
+        "status": { "type": "string", "enum": ["pending", "succeeded", "failed", "held_in_escrow", "released", "refunded"] },
+        "stripePaymentIntentId": { "type": "string", "maxLength": 128 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "type", "amount", "status", "createdAt"]
+    },
+    "SubscriptionRecord": {
+      "title": "SubscriptionRecord",
+      "description": "Company platform subscription tier and billing status",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "companyId": { "type": "string", "maxLength": 128 },
+        "plan": { "type": "string", "enum": ["free_starter", "professional", "business"] },
+        "amount": { "type": "number" },
+        "status": { "type": "string", "enum": ["active", "past_due", "canceled"] },
+        "maxTeamMembers": { "type": "number" },
+        "currentPeriodEnd": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "companyId", "plan", "amount", "status"]
+    }
+  },
+  "firestore": {
+    "/jobs/{jobId}": {
+      "schema": "Job",
+      "description": "Job site documents including project checklists and photos"
+    },
+    "/workers/{workerId}": {
+      "schema": "Worker",
+      "description": "Company worker profiles and live dispatch status"
+    },
+    "/messages/{messageId}": {
+      "schema": "Message",
+      "description": "Direct and broadcast site communication messages"
+    },
+    "/timeLogs/{logId}": {
+      "schema": "TimeLog",
+      "description": "Worker check-in and checkout time logs"
+    },
+    "/companySettings/{companyId}": {
+      "schema": "CompanySettings",
+      "description": "General settings and enterprise configuration"
+    },
+    "/transactions/{transactionId}": {
+      "schema": "TransactionRecord",
+      "description": "Financial ledger transactions and payouts"
+    },
+    "/subscriptions/{subscriptionId}": {
+      "schema": "SubscriptionRecord",
+      "description": "Company monthly billing subscriptions"
+    }
+  }
+}

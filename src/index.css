@@ -1,0 +1,388 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Base custom definitions to support premium construction themes */
+
+/* ==========================================================================
+   CONSTRUCTION-INSPIRED THEMES
+   ========================================================================== */
+
+/* 1. WOOD GRAIN THEME (Warm timber tones, cedar amber accents) */
+.theme-wood-grain {
+  --theme-bg: #1a120b;
+  --theme-card: rgba(38, 25, 17, 0.94);
+  --theme-border: #78350f;
+  --theme-accent: #f59e0b;
+  background-color: #1a120b;
+  color: #fef3c7;
+}
+.theme-wood-grain .bg-slate-900,
+.theme-wood-grain .bg-slate-950,
+.theme-wood-grain .bg-slate-850 {
+  background-color: rgba(38, 25, 17, 0.92) !important;
+  border-color: rgba(120, 53, 15, 0.5) !important;
+}
+.theme-wood-grain .bg-white {
+  background-color: rgba(45, 30, 20, 0.95) !important;
+  border-color: rgba(180, 83, 9, 0.4) !important;
+  color: #fef3c7 !important;
+}
+.theme-wood-grain .text-white,
+.theme-wood-grain .text-slate-100,
+.theme-wood-grain .text-slate-900 {
+  color: #fef3c7 !important;
+}
+.theme-wood-grain .text-slate-400,
+.theme-wood-grain .text-slate-500 {
+  color: #d97706 !important;
+}
+.theme-wood-grain .border-slate-800,
+.theme-wood-grain .border-slate-700 {
+  border-color: rgba(120, 53, 15, 0.45) !important;
+}
+
+/* 2. CONCRETE THEME (Industrial architectural stone & smooth masonry cool gray) */
+.theme-concrete {
+  background-color: #161b22;
+  color: #f8fafc;
+}
+.theme-concrete .bg-slate-900,
+.theme-concrete .bg-slate-950 {
+  background-color: rgba(28, 34, 43, 0.94) !important;
+  border-color: rgba(71, 85, 105, 0.5) !important;
+}
+.theme-concrete .border-slate-800 {
+  border-color: rgba(71, 85, 105, 0.4) !important;
+}
+
+/* 3. BLUEPRINT THEME (Deep technical cobalt with cyan precision lines) */
+.theme-blueprint {
+  background-color: #071527;
+  color: #f0f9ff;
+}
+.theme-blueprint .bg-slate-900,
+.theme-blueprint .bg-slate-950 {
+  background-color: rgba(10, 29, 53, 0.94) !important;
+  border-color: rgba(2, 132, 199, 0.4) !important;
+}
+.theme-blueprint .border-slate-800 {
+  border-color: rgba(2, 132, 199, 0.35) !important;
+}
+
+/* 4. STEEL THEME (Brushed metallic graphite & cool precision alloy) */
+.theme-steel {
+  background-color: #12151b;
+  color: #f1f5f9;
+}
+.theme-steel .bg-slate-900,
+.theme-steel .bg-slate-950 {
+  background-color: rgba(24, 28, 36, 0.94) !important;
+  border-color: rgba(100, 116, 139, 0.5) !important;
+}
+
+/* 5. INDUSTRIAL ORANGE THEME (High-vis safety orange & heavy equipment charcoal) */
+.theme-industrial-orange {
+  background-color: #101216;
+  color: #ffffff;
+}
+.theme-industrial-orange .bg-slate-900,
+.theme-industrial-orange .bg-slate-950 {
+  background-color: rgba(22, 25, 31, 0.95) !important;
+  border-color: rgba(234, 88, 12, 0.4) !important;
+}
+
+/* 6. CLEAN JOBSITE THEME (Crisp contractor white canvas, slate text & green accents) */
+.theme-clean-jobsite {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+.theme-clean-jobsite .bg-slate-900,
+.theme-clean-jobsite .bg-slate-950 {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05) !important;
+}
+.theme-clean-jobsite .text-white,
+.theme-clean-jobsite .text-slate-100 {
+  color: #0f172a !important;
+}
+.theme-clean-jobsite .text-slate-400 {
+  color: #64748b !important;
+}
+.theme-clean-jobsite .border-slate-800 {
+  border-color: #e2e8f0 !important;
+}
+.theme-clean-jobsite input,
+.theme-clean-jobsite select,
+.theme-clean-jobsite textarea {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+/* 7. ASPHALT THEME (Bitumen matte black & crisp road-stripe yellow accents) */
+.theme-asphalt {
+  background-color: #090a0c;
+  color: #ffffff;
+}
+.theme-asphalt .bg-slate-900,
+.theme-asphalt .bg-slate-950 {
+  background-color: rgba(16, 17, 21, 0.96) !important;
+  border-color: rgba(202, 138, 4, 0.4) !important;
+}
+
+/* 8. NATURAL STONE THEME (Earthy granite, sandstone & shale neutrals) */
+.theme-natural-stone {
+  background-color: #191614;
+  color: #fafaf9;
+}
+.theme-natural-stone .bg-slate-900,
+.theme-natural-stone .bg-slate-950 {
+  background-color: rgba(32, 28, 25, 0.94) !important;
+  border-color: rgba(120, 113, 108, 0.45) !important;
+}
+
+/* Admin & Client dashboards (Light Role-Based Themes) */
+:not(.dark-mode-override).admin-theme .bg-white,
+:not(.dark-mode-override).client-theme .bg-white {
+  background-color: rgba(255, 255, 255, 0.86) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-color: rgba(203, 213, 225, 0.6) !important;
+  box-shadow: 0 4px 18px -2px rgba(15, 23, 42, 0.08), 0 2px 8px -1px rgba(15, 23, 42, 0.04) !important;
+  transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:not(.dark-mode-override).admin-theme .bg-white:hover,
+:not(.dark-mode-override).client-theme .bg-white:hover {
+  background-color: rgba(255, 255, 255, 0.93) !important;
+  border-color: rgba(147, 197, 253, 0.8) !important;
+}
+
+:not(.dark-mode-override).admin-theme input, 
+:not(.dark-mode-override).admin-theme select, 
+:not(.dark-mode-override).admin-theme textarea,
+:not(.dark-mode-override).client-theme input, 
+:not(.dark-mode-override).client-theme select, 
+:not(.dark-mode-override).client-theme textarea {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Worker dashboard: Rugged Industrial glassmorphic slate cards */
+.worker-theme .bg-slate-900,
+.dark-mode-override .bg-slate-900 {
+  background-color: rgba(15, 23, 42, 0.85) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border-color: rgba(71, 85, 105, 0.6) !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 16px -6px rgba(0, 0, 0, 0.3) !important;
+  transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.worker-theme .bg-slate-900:hover,
+.dark-mode-override .bg-slate-900:hover {
+  background-color: rgba(15, 23, 42, 0.95) !important;
+  border-color: rgba(100, 116, 139, 0.7) !important;
+}
+
+.worker-theme .bg-slate-950,
+.dark-mode-override .bg-slate-950 {
+  background-color: rgba(8, 12, 24, 0.88) !important;
+  border-color: rgba(71, 85, 105, 0.4) !important;
+}
+
+.worker-theme .text-slate-300,
+.dark-mode-override .text-slate-300 {
+  color: #e2e8f0 !important;
+}
+
+.worker-theme input, 
+.worker-theme select, 
+.worker-theme textarea {
+  background-color: rgba(15, 23, 42, 0.95) !important;
+  border-color: rgba(71, 85, 105, 0.8) !important;
+}
+
+/* ==========================================================================
+   GLOBAL SLATE DARK MODE OVERRIDE (Overrides all role-based themes)
+   ========================================================================== */
+
+.dark-mode-override {
+  color-scheme: dark;
+}
+
+/* 1. Global Cards & Container Surfaces */
+.dark-mode-override .bg-white,
+.dark-mode-override .bg-slate-50,
+.dark-mode-override .bg-gray-50,
+.dark-mode-override .bg-zinc-50 {
+  background-color: rgba(15, 23, 42, 0.85) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border-color: rgba(51, 65, 85, 0.7) !important;
+  color: #f1f5f9 !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.45), 0 8px 16px -6px rgba(0, 0, 0, 0.35) !important;
+  transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark-mode-override .bg-white:hover {
+  background-color: rgba(15, 23, 42, 0.94) !important;
+  border-color: rgba(100, 116, 139, 0.8) !important;
+}
+
+/* 2. Secondary Sub-containers & Wells */
+.dark-mode-override .bg-slate-100,
+.dark-mode-override .bg-gray-100,
+.dark-mode-override .bg-zinc-100,
+.dark-mode-override .bg-slate-200 {
+  background-color: rgba(30, 41, 59, 0.75) !important;
+  border-color: rgba(71, 85, 105, 0.5) !important;
+  color: #f8fafc !important;
+}
+
+/* 3. Text Contrast & Hierarchy in Slate Dark Mode */
+.dark-mode-override .text-slate-900,
+.dark-mode-override .text-slate-800,
+.dark-mode-override .text-slate-700,
+.dark-mode-override .text-gray-900,
+.dark-mode-override .text-gray-800,
+.dark-mode-override .text-gray-700,
+.dark-mode-override .text-black {
+  color: #f8fafc !important;
+}
+
+.dark-mode-override .text-slate-600,
+.dark-mode-override .text-slate-500,
+.dark-mode-override .text-slate-450,
+.dark-mode-override .text-slate-505,
+.dark-mode-override .text-gray-600,
+.dark-mode-override .text-gray-500 {
+  color: #94a3b8 !important;
+}
+
+.dark-mode-override .text-slate-400,
+.dark-mode-override .text-gray-400 {
+  color: #cbd5e1 !important;
+}
+
+/* 4. Borders, Dividers & Separators */
+.dark-mode-override .border-slate-200,
+.dark-mode-override .border-slate-100,
+.dark-mode-override .border-slate-300,
+.dark-mode-override .border-gray-200,
+.dark-mode-override .border-gray-100,
+.dark-mode-override .border-gray-300,
+.dark-mode-override .border-slate-350 {
+  border-color: rgba(51, 65, 85, 0.65) !important;
+}
+
+.dark-mode-override .divide-slate-200 > :not([hidden]) ~ :not([hidden]),
+.dark-mode-override .divide-slate-100 > :not([hidden]) ~ :not([hidden]),
+.dark-mode-override .divide-gray-200 > :not([hidden]) ~ :not([hidden]),
+.dark-mode-override .divide-gray-100 > :not([hidden]) ~ :not([hidden]) {
+  border-color: rgba(51, 65, 85, 0.65) !important;
+}
+
+/* 5. Form Elements (Inputs, Selects, Textareas) */
+.dark-mode-override input,
+.dark-mode-override select,
+.dark-mode-override textarea {
+  background-color: rgba(15, 23, 42, 0.95) !important;
+  border-color: rgba(71, 85, 105, 0.75) !important;
+  color: #f8fafc !important;
+}
+
+.dark-mode-override input:focus,
+.dark-mode-override select:focus,
+.dark-mode-override textarea:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25) !important;
+  outline: none !important;
+}
+
+.dark-mode-override input::placeholder,
+.dark-mode-override textarea::placeholder {
+  color: #64748b !important;
+}
+
+.dark-mode-override option {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
+}
+
+/* 6. Hover states for table rows and list items */
+.dark-mode-override .hover\:bg-slate-50:hover,
+.dark-mode-override .hover\:bg-slate-100:hover,
+.dark-mode-override .hover\:bg-gray-50:hover,
+.dark-mode-override .hover\:bg-gray-100:hover {
+  background-color: rgba(30, 41, 59, 0.8) !important;
+}
+
+/* 7. Accent status badge chips */
+.dark-mode-override .bg-blue-50 {
+  background-color: rgba(30, 58, 138, 0.35) !important;
+  border-color: rgba(59, 130, 246, 0.4) !important;
+}
+.dark-mode-override .text-blue-600,
+.dark-mode-override .text-blue-650 {
+  color: #60a5fa !important;
+}
+
+.dark-mode-override .bg-emerald-50 {
+  background-color: rgba(6, 78, 59, 0.35) !important;
+  border-color: rgba(16, 185, 129, 0.4) !important;
+}
+.dark-mode-override .text-emerald-600,
+.dark-mode-override .text-emerald-700 {
+  color: #34d399 !important;
+}
+
+.dark-mode-override .bg-amber-50 {
+  background-color: rgba(120, 53, 15, 0.35) !important;
+  border-color: rgba(245, 158, 11, 0.4) !important;
+}
+.dark-mode-override .text-amber-600,
+.dark-mode-override .text-amber-700 {
+  color: #fbbf24 !important;
+}
+
+.dark-mode-override .bg-purple-50 {
+  background-color: rgba(88, 28, 135, 0.35) !important;
+  border-color: rgba(168, 85, 247, 0.4) !important;
+}
+.dark-mode-override .text-purple-600,
+.dark-mode-override .text-purple-700 {
+  color: #c084fc !important;
+}
+
+.dark-mode-override .bg-red-50,
+.dark-mode-override .bg-rose-50 {
+  background-color: rgba(136, 19, 55, 0.35) !important;
+  border-color: rgba(244, 63, 94, 0.4) !important;
+}
+.dark-mode-override .text-red-600,
+.dark-mode-override .text-rose-600 {
+  color: #fb7185 !important;
+}
+
+/* 8. Sleek Custom Scrollbars in Dark Slate Mode */
+.dark-mode-override ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.dark-mode-override ::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.6);
+}
+.dark-mode-override ::-webkit-scrollbar-thumb {
+  background: rgba(71, 85, 105, 0.7);
+  border-radius: 4px;
+}
+.dark-mode-override ::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.9);
+}
